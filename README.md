@@ -16,18 +16,16 @@
 # 🔬 About
 **IGenBench** is the first comprehensive benchmark designed to evaluate the reliability of text-to-infographic generation in text-to-image (T2I) models. It comprises 600 curated test cases spanning 30 distinct infographic types, reflecting authentic real-world design needs. The benchmark employs a systematic evaluation framework that decomposes infographic reliability into atomic yes/no verification questions based on a taxonomy of 10 question types, covering both semantic consistency and accurate data encoding. **IGenBench** provides two key metrics: question-level accuracy (Q-ACC) and infographic-level accuracy (I-ACC). Extensive evaluation of state-of-the-art models reveals a significant performance hierarchy and identifies data-related dimensions—such as data completeness and encoding—as universal bottlenecks, highlighting the gap between aesthetic appeal and actual information reliability.
 
-# 🔨Installation
+# 🔨 Installation
 TODO
 
 # 💪 Usage
 TODO
 
-# 📊 Leaderboard
-![xbhs3](assets/leaderboard.png)
 
 # 📝 Citation
 
-If you find IGenBench useful for your research, please cite our paper:
+If you find *IGenBench* useful for your research, please cite our paper:
 
 ```bibtex
 @misc{tang2026igenbenchbenchmarkingreliabilitytexttoinfographic,
