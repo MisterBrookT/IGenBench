@@ -1,0 +1,40 @@
+[project]
+name = "igenbench"
+version = "0.1.0"
+description = "IGenBench - Benchmark for Infographic Generation"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "google-genai>=1.49.0",
+    "pillow>=12.0.0",
+    "typer>=0.20.0",
+    "openai>=2.7.1"
+]
+
+[tool.setuptools]
+packages = ["igenbench", "prompts"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "uv"
+update_changelog_on_bump = true
+major_version_zero = true
+
+[dependency-groups]
+dev = [
+    "commitizen>=4.10.0",
+    "pre-commit>=4.5.0",
+    "pytest>=9.0.1",
+    "ruff>=0.14.6",
+]
+
+[project.scripts]
+igenbench = "igenbench.cli.main:main"
+
