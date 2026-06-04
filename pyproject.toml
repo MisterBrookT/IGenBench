@@ -9,11 +9,16 @@ dependencies = [
     "google-genai>=1.49.0",
     "pillow>=12.0.0",
     "typer>=0.20.0",
-    "openai>=2.7.1"
+    "openai>=2.7.1",
+    "requests>=2.31.0",
 ]
 
-[tool.setuptools]
-packages = ["igenbench", "prompts"]
+[project.optional-dependencies]
+replicate = ["replicate>=0.34.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["igenbench*", "prompts*"]
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]

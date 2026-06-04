@@ -39,3 +39,20 @@ class ModelNameResolver:
         """
         normalized_model = ModelNameResolver.normalize_for_filename(model_name)
         return f"{item_id}_{normalized_model}{extension}"
+
+    @staticmethod
+    def build_code_filename(
+        item_id: str, model_name: str, extension: str = ".py"
+    ) -> str:
+        """Build consistent code filename for generated code artifacts.
+
+        Args:
+            item_id: Item identifier
+            model_name: Model name to normalize
+            extension: File extension (default: .py)
+
+        Returns:
+            Consistent filename format
+        """
+        normalized_model = ModelNameResolver.normalize_for_filename(model_name)
+        return f"{item_id}_{normalized_model}{extension}"
