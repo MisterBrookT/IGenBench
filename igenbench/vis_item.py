@@ -156,7 +156,7 @@ class VISItem:
     chart_type: Optional[str] = None
 
     # generation result: {model_name: image_path}
-    generation: Optional[dict] = field(default_factory=dict)
+    generation: Dict[str, Any] = field(default_factory=dict)
 
     # evaluation result: List[EvalEntry] with source field
     # Each entry has: source ("prompt" or "seed"), ground, question, question_type, judgments

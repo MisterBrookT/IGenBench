@@ -41,17 +41,54 @@ def base64_to_PILImage(base64_image_url: str) -> PILImage:
 
 
 class LLMCaller:
+    """Abstract base class for LLM provider integrations.
+
+    Subclasses must implement all three methods and register themselves with
+    ``@register_caller("<provider_name>")``.
+    """
+
     def generate_text(self, model: str, prompt: str, **kwargs: Any) -> str:
+        """Generate plain text from a text prompt.
+
+        Args:
+            model: Provider-specific model identifier.
+            prompt: Text prompt.
+            **kwargs: Additional provider-specific parameters.
+
+        Returns:
+            Generated text string.
+        """
         raise NotImplementedError
 
     def understand_image(
         self, model: str, prompt: str, image_path: str, **kwargs: Any
     ) -> str:
+        """Analyse an image and return a text response.
+
+        Args:
+            model: Provider-specific model identifier.
+            prompt: Instruction / question about the image.
+            image_path: Absolute or relative path to the image file.
+            **kwargs: Additional provider-specific parameters.
+
+        Returns:
+            Model's text response.
+        """
         raise NotImplementedError
 
     def generate_image(
         self, model: str, prompt: str, **kwargs: Any
     ) -> GoogleImage | PILImage:
+        """Generate an image from a text prompt.
+
+        Args:
+            model: Provider-specific model identifier.
+            prompt: Text description of the desired image.
+            **kwargs: Additional provider-specific parameters.
+
+        Returns:
+            Generated image as a Google ``Image`` or PIL ``Image`` object.
+        """
         raise NotImplementedError
 
 

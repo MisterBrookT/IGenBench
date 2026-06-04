@@ -1,3 +1,5 @@
+from PIL.Image import Image as PILImage
+
 from igenbench.engine.base_engine import BaseEngine
 from igenbench.utils.llm.client import LLMClient
 from igenbench.vis_item import VISItem
@@ -9,7 +11,7 @@ class GenEngine(BaseEngine):
     def __init__(self, llm_client: LLMClient, model: str):
         super().__init__(llm_client, model)
 
-    def text2image(self, item: VISItem):
+    def text2image(self, item: VISItem) -> PILImage:
         """Generate image from text prompt.
 
         Args:

@@ -21,17 +21,38 @@ class LLMClient:
     def call_text_generation(
         self, model: str, prompt: str, **kwargs: Any
     ) -> Union[dict, str]:
+        """Generate text and parse any fenced code block / JSON in the response.
+
+        Returns:
+            Parsed dict if the response contains valid JSON, otherwise a plain string.
+            Returns an empty string if the provider returns None or an empty response.
+        """
         text_response = self._caller.generate_text(model, prompt, **kwargs)
+        if not text_response:
+            return ""
         return extract_from_markdown(text_response)
 
     def call_image_understanding(
         self, model: str, prompt: str, image_path: str, **kwargs: Any
     ) -> Union[dict, str]:
+        """Analyse an image and parse any fenced code block / JSON in the response.
+
+        Returns:
+            Parsed dict if the response contains valid JSON, otherwise a plain string.
+            Returns an empty string if the provider returns None or an empty response.
+        """
         text_response = self._caller.understand_image(
             model, prompt, image_path, **kwargs
         )
+        if not text_response:
+            return ""
         return extract_from_markdown(text_response)
 
     def call_image_generation(self, model: str, prompt: str, **kwargs: Any) -> PILImage:
+        """Generate an image and return it as a PIL Image.
+
+        Returns:
+            PIL Image object of the generated image.
+        """
         pil_image = self._caller.generate_image(model, prompt, **kwargs)
         return pil_image

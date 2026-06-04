@@ -1,10 +1,33 @@
 [project]
 name = "igenbench"
 version = "0.1.0"
-description = "IGenBench - Benchmark for Infographic Generation"
+description = "IGenBench - Benchmark for evaluating the reliability of text-to-infographic generation"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
+authors = [
+    {name = "MisterBrookT", email = "yinghaotang2001@gmail.com"},
+]
+keywords = [
+    "benchmark",
+    "infographic",
+    "text-to-image",
+    "evaluation",
+    "multimodal",
+    "LLM",
+    "generative-ai",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
     "google-genai>=1.49.0",
     "pillow>=12.0.0",
@@ -12,6 +35,11 @@ dependencies = [
     "openai>=2.7.1",
     "requests>=2.31.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/MisterBrookT/IGenBench"
+Repository = "https://github.com/MisterBrookT/IGenBench"
+"Bug Tracker" = "https://github.com/MisterBrookT/IGenBench/issues"
 
 [project.optional-dependencies]
 replicate = ["replicate>=0.34.0"]
@@ -37,6 +65,7 @@ dev = [
     "commitizen>=4.10.0",
     "pre-commit>=4.5.0",
     "pytest>=9.0.1",
+    "pytest-cov>=6.0.0",
     "ruff>=0.14.6",
 ]
 

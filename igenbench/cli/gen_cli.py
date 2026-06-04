@@ -25,7 +25,7 @@ def cmd_gen(
         "--resume",
         help="Resume from output directory to skip already generated images",
     ),
-):
+) -> None:
     """Generate image from text prompt using text-to-image model.
 
     Reads the VISItem and generates an image based on the t2i_prompt field.

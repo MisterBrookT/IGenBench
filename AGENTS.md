@@ -146,5 +146,5 @@ outputs/
 - **Never** add API keys to source files. Use environment variables (see `.env.example`).
 - `VISItem.from_dict(path)` takes a **file path**, not a dict.
 - `EvalEntry.judgments` is a list — multiple (gen_model, eval_model) pairs can coexist on the same question (multi-model comparison).
-- The `Question` dataclass in `vis_item.py` is **deprecated**; use `EvalEntry` instead.
+- The `Question` dataclass in `vis_item.py` is **deprecated** and will be removed in a future version. Migrate to `EvalEntry`: replace `q` → `question`, `q_ground` → `ground`, `q_type` → `question_type`, and use `VISItem.evaluation: list[EvalEntry]` instead of a separate JSONL questions file.
 - When editing CLI commands, register them via `igenbench/cli/main.py` imports (side-effect import pattern).

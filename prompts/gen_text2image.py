@@ -1,4 +1,4 @@
-from nanochart.vis_item import VISItem
+from igenbench.vis_item import VISItem
 
 
 def get_prompt_text2image(item: VISItem) -> str:

@@ -100,8 +100,22 @@ def get_model_name_from_image_path(image_path: Path | str) -> str:
     return stem.split("_")[-1]
 
 
-def split_senmantic_and_data_in_t2i_prompt(t2i_prompt: str) -> tuple[str, str]:
+def split_semantic_and_data_in_t2i_prompt(t2i_prompt: str) -> tuple[str, str]:
+    """Split a T2I prompt into semantic description and data sections.
+
+    Expects the prompt to contain the separator "The given data is:".
+    Returns a (semantic_part, data_part) tuple.
+
+    Raises:
+        ValueError: If the separator is not found in the prompt.
     """
-    Split the semantic and data parts of the T2I prompt.
-    """
-    return t2i_prompt.split("The given data is:")
+    if not t2i_prompt:
+        raise ValueError("Prompt cannot be empty or None.")
+    separator = "The given data is:"
+    if separator not in t2i_prompt:
+        raise ValueError(
+            f"Prompt does not contain expected separator '{separator}'. "
+            "Cannot split semantic and data sections."
+        )
+    parts = t2i_prompt.split(separator, maxsplit=1)
+    return parts[0], parts[1]

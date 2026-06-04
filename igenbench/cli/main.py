@@ -11,7 +11,7 @@ import igenbench.cli.batch_cli  # noqa: E402, F401
 import igenbench.cli.score_cli  # noqa: E402, F401
 
 
-def main():
+def main() -> None:
     """Entry point for the IGenBench CLI."""
     app()
 

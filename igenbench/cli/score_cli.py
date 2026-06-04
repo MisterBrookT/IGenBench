@@ -32,7 +32,7 @@ def cmd_score(
         "--by-type/--no-by-type",
         help="Show accuracy breakdown by question type",
     ),
-):
+) -> None:
     """Aggregate and display evaluation accuracy scores from the output directory."""
     output_path = Path(output_dir)
 
