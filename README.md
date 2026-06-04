@@ -14,10 +14,13 @@
 
 ![xbhs3](assets/igenbench.png)
 
+## 📢 News
+- **[2026-06]** 🎉 IGenBench has been accepted to **ACL 2026** (Main Conference)!
+
 # 🔬 About
 >Text-to-image models can generate visually appealing infographics — but are they correct?
 
-IGenBench focuses on information **reliability** — whether a generated infographic is factually correct, numerically accurate, and semantically faithful to the input text and data.
+IGenBench is an **ACL 2026** benchmark that focuses on information **reliability** — whether a generated infographic is factually correct, numerically accurate, and semantically faithful to the input text and data.
 
 
 # 🔨 Installation
