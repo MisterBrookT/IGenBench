@@ -1,10 +1,6 @@
 """Unit tests for VISItem and related data classes. No API keys required."""
 
-import json
-import os
 from pathlib import Path
-
-import pytest
 
 from igenbench.vis_item import EvalEntry, Judgment, VISItem
 
