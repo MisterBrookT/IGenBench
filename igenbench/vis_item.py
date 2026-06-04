@@ -17,7 +17,11 @@ class Judgment:
 
 @dataclass
 class Question:
-    """Evaluation question with metadata."""
+    """Evaluation question with metadata.
+
+    .. deprecated::
+        Use :class:`EvalEntry` in ``VISItem.evaluation`` instead.
+    """
 
     item_id: str
     q_id: str
@@ -186,7 +190,8 @@ class VISItem:
     @classmethod
     def from_dict(cls, info_path: str) -> "VISItem":
         """Create VISItem from a json file"""
-        info_data = json.load(open(info_path, "r"))
+        with open(info_path, "r", encoding="utf-8") as f:
+            info_data = json.load(f)
 
         # Build kwargs for new format
         kwargs = {
@@ -240,18 +245,5 @@ class VISItem:
 
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-        # Convert to dict with proper serialization
-        data = asdict(self)
-        
-        # Convert EvalEntry objects to dicts and preserve source field
-        evaluation_list = []
-        for entry in data["evaluation"]:
-            entry_dict = entry.to_dict() if isinstance(entry, EvalEntry) else entry
-            # Add source field if it exists
-            if hasattr(entry, 'source'):
-                entry_dict["source"] = entry.source
-            evaluation_list.append(entry_dict)
-        data["evaluation"] = evaluation_list
-
-        with open(save_path, "w") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        with open(save_path, "w", encoding="utf-8") as f:
+            json.dump(asdict(self), f, ensure_ascii=False, indent=2)

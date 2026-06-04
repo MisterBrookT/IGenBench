@@ -1,3 +1,4 @@
+from pathlib import Path
 from PIL import Image
 from PIL.Image import Image as PILImage
 from typing import Any
@@ -7,6 +8,19 @@ from google.genai import types
 from google.genai.types import Image as GoogleImage
 from openai import OpenAI
 import os
+
+
+_MIME_TYPES = {
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".webp": "image/webp",
+    ".gif": "image/gif",
+}
+
+
+def _get_mime_type(image_path: str) -> str:
+    return _MIME_TYPES.get(Path(image_path).suffix.lower(), "image/jpeg")
 
 
 def encode_image_to_base64(image_path: str) -> str:
@@ -58,7 +72,7 @@ class GoogleCaller(LLMCaller):
         response = self._client.models.generate_content(
             model=model,
             contents=[
-                types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"),
+                types.Part.from_bytes(data=image_bytes, mime_type=_get_mime_type(image_path)),
                 prompt,
             ],
         )

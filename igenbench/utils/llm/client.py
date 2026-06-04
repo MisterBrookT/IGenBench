@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Union
 
 from .caller_registry import CALLER_REGISTRY
 from PIL.Image import Image as PILImage
@@ -18,19 +18,17 @@ class LLMClient:
             )
         return CALLER_REGISTRY[provider]()
 
-    def call_text_generation(self, model: str, prompt: str, **kwargs: Any) -> str:
+    def call_text_generation(self, model: str, prompt: str, **kwargs: Any) -> Union[dict, str]:
         text_response = self._caller.generate_text(model, prompt, **kwargs)
-        style_normalized_text_response = extract_from_markdown(text_response)
-        return style_normalized_text_response
+        return extract_from_markdown(text_response)
 
     def call_image_understanding(
         self, model: str, prompt: str, image_path: str, **kwargs: Any
-    ) -> str:
+    ) -> Union[dict, str]:
         text_response = self._caller.understand_image(
             model, prompt, image_path, **kwargs
         )
-        style_normalized_text_response = extract_from_markdown(text_response)
-        return style_normalized_text_response
+        return extract_from_markdown(text_response)
 
     def call_image_generation(self, model: str, prompt: str, **kwargs: Any) -> PILImage:
         pil_image = self._caller.generate_image(model, prompt, **kwargs)
