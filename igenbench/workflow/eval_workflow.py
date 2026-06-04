@@ -1,6 +1,5 @@
 """Dedicated workflow for running evaluations on generated questions."""
 
-from typing import List
 from pathlib import Path
 
 from igenbench.workflow.workflow_config import EvalWorkflowConfig
