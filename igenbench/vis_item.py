@@ -190,7 +190,7 @@ class VISItem:
     @classmethod
     def from_dict(cls, info_path: str) -> "VISItem":
         """Create VISItem from a json file"""
-        with open(info_path, "r") as f:
+        with open(info_path, "r", encoding="utf-8") as f:
             info_data = json.load(f)
 
         # Build kwargs for new format
@@ -245,5 +245,5 @@ class VISItem:
 
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-        with open(save_path, "w") as f:
+        with open(save_path, "w", encoding="utf-8") as f:
             json.dump(asdict(self), f, ensure_ascii=False, indent=2)

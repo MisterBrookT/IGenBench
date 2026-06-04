@@ -67,7 +67,7 @@ def cmd_score(
         if not item.evaluation:
             continue
 
-        item_count += 1
+        has_matching = False
         for eval_entry in item.evaluation:
             for judgment in eval_entry.judgments:
                 gm = judgment.gen_model
@@ -89,6 +89,11 @@ def cmd_score(
                 if by_type and eval_entry.question_type:
                     by_type_scores[(gm, em, eval_entry.question_type)][0] += correct
                     by_type_scores[(gm, em, eval_entry.question_type)][1] += 1
+
+                has_matching = True
+
+        if has_matching:
+            item_count += 1
 
     if not overall:
         typer.echo("No evaluation results found matching the filters.")
