@@ -10,6 +10,7 @@ SAMPLE_ITEM_PATH = FIXTURES_DIR / "sample_item.json"
 
 # ─── Loading ──────────────────────────────────────────────────────────────────
 
+
 def test_from_dict_loads_id():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     assert item.id == "test-001"
@@ -45,6 +46,7 @@ def test_from_dict_loads_judgment():
 
 # ─── has_judgment / add_judgment ──────────────────────────────────────────────
 
+
 def test_has_judgment_true():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     entry = item.evaluation[1]
@@ -71,10 +73,13 @@ def test_add_judgment_appends():
 
 # ─── check_evaluation_complete ────────────────────────────────────────────────
 
+
 def test_check_evaluation_complete_false_when_missing_judgment():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     # evaluation[0] has no judgments
-    assert not item.check_evaluation_complete("gemini-2.5-flash-image", "gemini-2.5-flash")
+    assert not item.check_evaluation_complete(
+        "gemini-2.5-flash-image", "gemini-2.5-flash"
+    )
 
 
 def test_check_evaluation_complete_true_when_all_judged():
@@ -83,9 +88,7 @@ def test_check_evaluation_complete_true_when_all_judged():
         evaluation=[
             EvalEntry(
                 judgments=[
-                    Judgment(
-                        gen_model="gm", eval_model="em", analysis="ok", answer="1"
-                    )
+                    Judgment(gen_model="gm", eval_model="em", analysis="ok", answer="1")
                 ]
             )
         ],
@@ -100,6 +103,7 @@ def test_check_evaluation_complete_false_empty():
 
 # ─── check_generation_exists ─────────────────────────────────────────────────
 
+
 def test_check_generation_exists_false_when_empty():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     assert not item.check_generation_exists("any-model")
@@ -112,6 +116,7 @@ def test_check_generation_exists_true_after_update():
 
 
 # ─── save / round-trip ────────────────────────────────────────────────────────
+
 
 def test_save_item_creates_file(tmp_path):
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
@@ -138,6 +143,7 @@ def test_round_trip_preserves_data(tmp_path):
 
 
 # ─── get_evaluation_by_source ────────────────────────────────────────────────
+
 
 def test_get_evaluation_by_source():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))

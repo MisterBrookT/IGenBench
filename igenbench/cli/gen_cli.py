@@ -32,7 +32,7 @@ def cmd_gen(
     """
     try:
         workflow = GenWorkflow(provider, model, output_dir, resume=resume)
-        
+
         # Load item - use state_manager for resume functionality
         if resume:
             item = workflow.state_manager.load_item(info_path, resume=True)

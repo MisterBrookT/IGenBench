@@ -11,16 +11,16 @@ class GenEngine(BaseEngine):
 
     def text2image(self, item: VISItem):
         """Generate image from text prompt.
-        
+
         Args:
             item: VISItem containing t2i_prompt
-            
+
         Returns:
             PIL Image object
         """
         if not item.t2i_prompt:
             raise ValueError("Generation requires t2i_prompt to be set")
-            
+
         prompt = item.t2i_prompt
         response = self.llm_client.call_image_generation(
             model=self.model, prompt=prompt

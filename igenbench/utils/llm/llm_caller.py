@@ -25,6 +25,7 @@ def _get_mime_type(image_path: str) -> str:
 
 def encode_image_to_base64(image_path: str) -> str:
     import base64
+
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
 
@@ -32,6 +33,7 @@ def encode_image_to_base64(image_path: str) -> str:
 def base64_to_PILImage(base64_image_url: str) -> PILImage:
     import base64
     from io import BytesIO
+
     base64_data = base64_image_url.split(",")[1]
     image_bytes = base64.b64decode(base64_data)
     pil_image = Image.open(BytesIO(image_bytes))
@@ -72,7 +74,9 @@ class GoogleCaller(LLMCaller):
         response = self._client.models.generate_content(
             model=model,
             contents=[
-                types.Part.from_bytes(data=image_bytes, mime_type=_get_mime_type(image_path)),
+                types.Part.from_bytes(
+                    data=image_bytes, mime_type=_get_mime_type(image_path)
+                ),
                 prompt,
             ],
         )
@@ -157,6 +161,7 @@ class ReplicateCaller(LLMCaller):
 
     def generate_text(self, model: str, prompt: str, **kwargs: Any) -> str:
         import replicate
+
         input = {"prompt": prompt}
         output = replicate.run(model, input=input)
         return "".join(output)

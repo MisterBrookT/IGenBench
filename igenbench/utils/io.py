@@ -105,5 +105,3 @@ def split_senmantic_and_data_in_t2i_prompt(t2i_prompt: str) -> tuple[str, str]:
     Split the semantic and data parts of the T2I prompt.
     """
     return t2i_prompt.split("The given data is:")
-
-

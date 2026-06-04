@@ -101,9 +101,13 @@ def cmd_score(
 
     col_w = 60
     typer.echo(f"\n{'=' * col_w}")
-    typer.echo(f"IGenBench Scores  ({item_count} items{', ' + str(skipped) + ' skipped' if skipped else ''})")
+    typer.echo(
+        f"IGenBench Scores  ({item_count} items{', ' + str(skipped) + ' skipped' if skipped else ''})"
+    )
     typer.echo(f"{'=' * col_w}")
-    typer.echo(f"{'Gen Model':<28} {'Eval Model':<20} {'Accuracy':>9}  {'(correct/total)':>15}")
+    typer.echo(
+        f"{'Gen Model':<28} {'Eval Model':<20} {'Accuracy':>9}  {'(correct/total)':>15}"
+    )
     typer.echo(f"{'-' * col_w}")
 
     for (gm, em), (correct, total) in sorted(overall.items()):
@@ -120,9 +124,7 @@ def cmd_score(
                 typer.echo(f"  {'[' + src + ']':<26} {'':<20} {a:>8.1%}  ({c}/{t})")
 
         if by_type:
-            qtypes = sorted(
-                {k[2] for k in by_type_scores if k[0] == gm and k[1] == em}
-            )
+            qtypes = sorted({k[2] for k in by_type_scores if k[0] == gm and k[1] == em})
             for qt in qtypes:
                 c, t = by_type_scores[(gm, em, qt)]
                 a = c / t if t else 0.0

@@ -154,7 +154,7 @@ class VISItem:
     reference_image_url: Optional[str] = None
     t2i_prompt: Optional[str] = None
     chart_type: Optional[str] = None
-    
+
     # generation result: {model_name: image_path}
     generation: Optional[dict] = field(default_factory=dict)
 
@@ -172,11 +172,13 @@ class VISItem:
 
     def get_evaluation_by_source(self, source: str) -> List[EvalEntry]:
         """Get evaluation entries filtered by source (prompt or seed)."""
-        return [entry for entry in self.evaluation if hasattr(entry, 'source') and entry.source == source]
+        return [
+            entry
+            for entry in self.evaluation
+            if hasattr(entry, "source") and entry.source == source
+        ]
 
-    def check_evaluation_complete(
-        self, gen_model: str, eval_model: str
-    ) -> bool:
+    def check_evaluation_complete(self, gen_model: str, eval_model: str) -> bool:
         """Check if all questions have been fully evaluated for the given models."""
         if not self.evaluation:
             return False
@@ -207,12 +209,14 @@ class VISItem:
             kwargs["chart_type"] = info_data["chart_type"]
         if "generation" in info_data:
             kwargs["generation"] = info_data["generation"]
-        
+
         # Handle evaluation - now a list with source field
         if "evaluation" in info_data:
             evaluation = []
             for entry in info_data["evaluation"]:
-                eval_entry = EvalEntry.from_dict(entry) if isinstance(entry, dict) else entry
+                eval_entry = (
+                    EvalEntry.from_dict(entry) if isinstance(entry, dict) else entry
+                )
                 # Add source field to eval_entry if it exists in the data
                 if isinstance(entry, dict) and "source" in entry:
                     eval_entry.source = entry["source"]

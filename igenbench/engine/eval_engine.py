@@ -30,13 +30,13 @@ class EvalEngine(BaseEngine):
         image_path: str,
     ) -> Judgment:
         """Judge an evaluation entry by calling LLM with the image.
-        
+
         Args:
             eval_entry: Evaluation entry containing the question
             gen_model: Name of the model that generated the image
             eval_model: Name of the model performing evaluation
             image_path: Path to the generated image
-            
+
         Returns:
             Judgment object with analysis and answer
         """
