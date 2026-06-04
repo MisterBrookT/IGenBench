@@ -33,7 +33,7 @@ def cmd_run_evaluation(
         "--resume",
         help="Resume from output directory to skip already processed items",
     ),
-):
+) -> None:
     """Run evaluation on a generated image using pre-generated questions.
 
     Evaluates the generated image on all questions in the VISItem.

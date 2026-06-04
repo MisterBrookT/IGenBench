@@ -49,11 +49,18 @@ class EvalEngine(BaseEngine):
             model=eval_model, image_path=image_path, prompt=question_judgment_prompt
         )
 
+        if isinstance(response, dict):
+            analysis = response.get("analysis", "")
+            answer = response.get("answer", "")
+        else:
+            analysis = str(response)
+            answer = ""
+
         judgment = Judgment(
             eval_model=eval_model,
             gen_model=gen_model,
-            analysis=response.get("analysis", ""),
-            answer=response.get("answer", ""),
+            analysis=analysis,
+            answer=answer,
         )
 
         return judgment

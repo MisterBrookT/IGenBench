@@ -27,7 +27,7 @@ def cmd_batch_gen(
         "--resume/--no-resume",
         help="Resume from existing state, skipping already generated images",
     ),
-):
+) -> None:
     """Batch generate infographic images for all VISItem JSON files in a directory."""
     json_files = sorted(Path(data_dir).glob("*.json"))
 
@@ -79,7 +79,7 @@ def cmd_batch_eval(
         "--resume/--no-resume",
         help="Resume from existing state, skipping already evaluated questions",
     ),
-):
+) -> None:
     """Batch evaluate generated images for all VISItem JSON files in a directory."""
     json_files = sorted(Path(data_dir).glob("*.json"))
 
