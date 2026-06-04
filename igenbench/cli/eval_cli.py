@@ -40,7 +40,7 @@ def cmd_run_evaluation(
     """
     try:
         workflow = EvalWorkflow(provider, model, output_dir, resume=resume)
-        
+
         # Load item - use state_manager for resume functionality
         if resume:
             item = workflow.state_manager.load_item(info_path, resume=True)
@@ -53,7 +53,9 @@ def cmd_run_evaluation(
         # Save result
         item.save_item(output_path=output_dir)
         save_path = item.build_save_path(output_dir)
-        logger.info(f"✅ Evaluation completed successfully for {item.id}.json, saved to {save_path}")
+        logger.info(
+            f"✅ Evaluation completed successfully for {item.id}.json, saved to {save_path}"
+        )
 
     except FileNotFoundError as e:
         logger.error(f"❌ File not found: {e}")

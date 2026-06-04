@@ -1,0 +1,30 @@
+{
+  "id": "test-001",
+  "t2i_prompt": "A bar chart showing quarterly sales: Q1=10, Q2=20, Q3=15, Q4=25.",
+  "chart_type": "bar",
+  "reference_image_url": null,
+  "generation": {},
+  "evaluation": [
+    {
+      "source": "prompt",
+      "ground": "4",
+      "question": "How many bars are there in the chart?",
+      "question_type": "count",
+      "judgments": []
+    },
+    {
+      "source": "seed",
+      "ground": "Q4",
+      "question": "Which quarter has the highest sales?",
+      "question_type": "ordering",
+      "judgments": [
+        {
+          "gen_model": "gemini-2.5-flash-image",
+          "eval_model": "gemini-2.5-flash",
+          "analysis": "The bar for Q4 is the tallest, representing 25.",
+          "answer": "1"
+        }
+      ]
+    }
+  ]
+}

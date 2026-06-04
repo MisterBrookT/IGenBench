@@ -1,6 +1,5 @@
 """Dedicated workflow for running evaluations on generated questions."""
 
-from typing import List
 from pathlib import Path
 
 from igenbench.workflow.workflow_config import EvalWorkflowConfig
@@ -75,7 +74,7 @@ class EvalWorkflow:
         logger.info(
             f"🔍 Evaluating item {item.id} with {self.eval_model} on {gen_model_name}"
         )
-        
+
         item = self._evaluate_all(
             item=item,
             image_path=image_path,

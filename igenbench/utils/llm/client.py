@@ -18,7 +18,9 @@ class LLMClient:
             )
         return CALLER_REGISTRY[provider]()
 
-    def call_text_generation(self, model: str, prompt: str, **kwargs: Any) -> Union[dict, str]:
+    def call_text_generation(
+        self, model: str, prompt: str, **kwargs: Any
+    ) -> Union[dict, str]:
         text_response = self._caller.generate_text(model, prompt, **kwargs)
         return extract_from_markdown(text_response)
 

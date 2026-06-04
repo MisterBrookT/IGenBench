@@ -6,7 +6,6 @@ import typer
 
 from igenbench.cli.main import app
 from igenbench.utils.logger import logger
-from igenbench.vis_item import VISItem
 from igenbench.workflow.eval_workflow import EvalWorkflow
 from igenbench.workflow.gen_workflow import GenWorkflow
 

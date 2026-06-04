@@ -1,0 +1,37 @@
+name: Feature Request
+description: Suggest a new feature or improvement.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please search existing issues first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or motivation
+      description: What problem does this feature solve, or what use case does it enable?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature you'd like and how it should work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you considered?
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Are you willing to implement this?
+      options:
+        - label: Yes, I'd like to submit a PR.
