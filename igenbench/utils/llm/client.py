@@ -25,8 +25,11 @@ class LLMClient:
 
         Returns:
             Parsed dict if the response contains valid JSON, otherwise a plain string.
+            Returns an empty string if the provider returns None or an empty response.
         """
         text_response = self._caller.generate_text(model, prompt, **kwargs)
+        if not text_response:
+            return ""
         return extract_from_markdown(text_response)
 
     def call_image_understanding(
@@ -36,10 +39,13 @@ class LLMClient:
 
         Returns:
             Parsed dict if the response contains valid JSON, otherwise a plain string.
+            Returns an empty string if the provider returns None or an empty response.
         """
         text_response = self._caller.understand_image(
             model, prompt, image_path, **kwargs
         )
+        if not text_response:
+            return ""
         return extract_from_markdown(text_response)
 
     def call_image_generation(self, model: str, prompt: str, **kwargs: Any) -> PILImage:

@@ -53,7 +53,7 @@ class EvalEngine(BaseEngine):
             analysis = response.get("analysis", "")
             answer = response.get("answer", "")
         else:
-            analysis = str(response)
+            analysis = str(response) if response is not None else ""
             answer = ""
 
         judgment = Judgment(

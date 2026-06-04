@@ -109,6 +109,8 @@ def split_semantic_and_data_in_t2i_prompt(t2i_prompt: str) -> tuple[str, str]:
     Raises:
         ValueError: If the separator is not found in the prompt.
     """
+    if not t2i_prompt:
+        raise ValueError("Prompt cannot be empty or None.")
     separator = "The given data is:"
     if separator not in t2i_prompt:
         raise ValueError(

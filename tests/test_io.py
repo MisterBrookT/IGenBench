@@ -66,6 +66,16 @@ def test_split_raises_when_separator_missing():
         split_semantic_and_data_in_t2i_prompt("No separator here.")
 
 
+def test_split_raises_on_empty_string():
+    with pytest.raises(ValueError, match="empty or None"):
+        split_semantic_and_data_in_t2i_prompt("")
+
+
+def test_split_raises_on_none():
+    with pytest.raises((ValueError, TypeError)):
+        split_semantic_and_data_in_t2i_prompt(None)  # type: ignore[arg-type]
+
+
 def test_split_only_splits_on_first_occurrence():
     prompt = "A.The given data is:B.The given data is:C"
     semantic, data = split_semantic_and_data_in_t2i_prompt(prompt)
