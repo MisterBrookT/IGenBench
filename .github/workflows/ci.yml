@@ -54,3 +54,37 @@ jobs:
         with:
           name: coverage-report
           path: coverage.xml
+
+  smoke:
+    name: CLI Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Check CLI entry points
+        run: |
+          uv run igenbench --help
+          uv run igenbench gen --help
+          uv run igenbench eval --help | grep "gemini-2.5-pro"
+          uv run igenbench batch-eval --help | grep "gemini-2.5-pro"
+          uv run igenbench score --help
+
+      - name: Score fixture output
+        run: |
+          mkdir -p smoke-output/test-001
+          cp tests/fixtures/sample_item.json smoke-output/test-001/test-001.json
+          uv run igenbench score \
+            --output-dir smoke-output \
+            --gen-model gemini-2.5-flash-image \
+            --eval-model gemini-2.5-pro \
+            --by-source \
+            --by-type
