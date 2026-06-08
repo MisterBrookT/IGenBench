@@ -3,6 +3,7 @@
 import typer
 
 from igenbench.cli.main import app
+from igenbench.defaults import DEFAULT_EVALUATION_MODEL
 from igenbench.utils.logger import logger
 from igenbench.workflow.eval_workflow import EvalWorkflow
 from igenbench.vis_item import VISItem
@@ -18,7 +19,7 @@ def cmd_run_evaluation(
     ),
     provider: str = typer.Option("google", "--provider", help="LLM provider to use"),
     model: str = typer.Option(
-        "gemini-2.5-flash", "--model", help="Model name to use for evaluation"
+        DEFAULT_EVALUATION_MODEL, "--model", help="Model name to use for evaluation"
     ),
     output_dir: str = typer.Option(
         "outputs/", "--output-dir", help="Output directory path"

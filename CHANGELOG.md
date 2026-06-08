@@ -19,3 +19,6 @@ versioning follows [PEP 440](https://peps.python.org/pep-0440/).
 - `VISItem` data model with full JSON serialisation
 - Incremental progress: every question result is saved immediately so interrupted runs resume cleanly
 - ACL 2026 camera-ready release
+
+### Fixed
+- Align default evaluation model and README examples with the paper's `gemini-2.5-pro` setting.

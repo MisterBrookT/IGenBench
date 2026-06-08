@@ -20,7 +20,7 @@
       "judgments": [
         {
           "gen_model": "gemini-2.5-flash-image",
-          "eval_model": "gemini-2.5-flash",
+          "eval_model": "gemini-2.5-pro",
           "analysis": "The bar for Q4 is the tallest, representing 25.",
           "answer": "1"
         }

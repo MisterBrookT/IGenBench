@@ -3,6 +3,7 @@
 import typer
 
 from igenbench.cli.main import app
+from igenbench.defaults import DEFAULT_GENERATION_MODEL
 from igenbench.utils.logger import logger
 from igenbench.workflow.gen_workflow import GenWorkflow
 from igenbench.vis_item import VISItem
@@ -15,7 +16,7 @@ def cmd_gen(
     ),
     provider: str = typer.Option("google", "--provider", help="LLM provider to use"),
     model: str = typer.Option(
-        "gemini-2.0-flash-exp", "--model", help="Model to use for image generation"
+        DEFAULT_GENERATION_MODEL, "--model", help="Model to use for image generation"
     ),
     output_dir: str = typer.Option(
         "outputs/", "--output-dir", help="Output directory path"

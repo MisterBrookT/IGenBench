@@ -43,6 +43,8 @@
 
 *Some model names follow the arXiv preprint; the camera-ready version will include updated names.*
 
+**Reproducibility note:** the paper results in Section 5.4 were evaluated with `gemini-2.5-pro`.
+
 ---
 
 # 🔨 Installation
@@ -117,7 +119,7 @@ igenbench eval \
   --gen-model gemini-2.5-flash-image \
   --output-dir outputs/ \
   --provider google \
-  --model gemini-2.5-flash
+  --model gemini-2.5-pro
 ```
 
 <details>
@@ -136,7 +138,7 @@ igenbench eval \
 - `--image-path`: Path to the image (auto-resolved from `--output-dir` if omitted)
 - `--output-dir`: Output directory (default: `outputs/`)
 - `--provider`: LLM provider (default: `google`)
-- `--model`: Evaluation model (default: `gemini-2.5-flash`)
+- `--model`: Evaluation model (default: `gemini-2.5-pro`)
 - `--resume`: Skip already-evaluated questions
 
 </details>
@@ -159,7 +161,7 @@ igenbench batch-eval \
   --gen-model gemini-2.5-flash-image \
   --output-dir outputs/ \
   --provider google \
-  --model gemini-2.5-flash
+  --model gemini-2.5-pro
 ```
 
 ## Score Aggregation
@@ -171,7 +173,7 @@ igenbench score --output-dir outputs/
 igenbench score \
   --output-dir outputs/ \
   --gen-model gemini-2.5-flash-image \
-  --eval-model gemini-2.5-flash \
+  --eval-model gemini-2.5-pro \
   --by-source --by-type
 ```
 

@@ -50,13 +50,13 @@ def test_from_dict_loads_judgment():
 def test_has_judgment_true():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     entry = item.evaluation[1]
-    assert entry.has_judgment("gemini-2.5-flash-image", "gemini-2.5-flash")
+    assert entry.has_judgment("gemini-2.5-flash-image", "gemini-2.5-pro")
 
 
 def test_has_judgment_false_wrong_gen_model():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     entry = item.evaluation[1]
-    assert not entry.has_judgment("unknown-model", "gemini-2.5-flash")
+    assert not entry.has_judgment("unknown-model", "gemini-2.5-pro")
 
 
 def test_add_judgment_appends():
@@ -78,7 +78,7 @@ def test_check_evaluation_complete_false_when_missing_judgment():
     item = VISItem.from_dict(str(SAMPLE_ITEM_PATH))
     # evaluation[0] has no judgments
     assert not item.check_evaluation_complete(
-        "gemini-2.5-flash-image", "gemini-2.5-flash"
+        "gemini-2.5-flash-image", "gemini-2.5-pro"
     )
 
 
